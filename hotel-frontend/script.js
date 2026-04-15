@@ -1,6 +1,22 @@
 //const apiUrl = "https://wdb26-exempel-deployment-testing.2.rahtiapp.fi/api/ip";
 const apiUrl = "http://127.0.0.1:8080";
 
+
+async function getBookings() {
+    const res = await fetch(`${apiUrl}/bookings`);
+    const bookings = await res.json();
+
+    console.log(bookings)
+
+    for (b of bookings) {
+        document.getElementById("bookings-list").innerHTML += `
+            <li>${b.id} - ${b.datefrom}</li>
+        `;
+    }
+    
+}
+getBookings();
+
 async function getRooms() {
     const res = await fetch(`${apiUrl}/rooms`);
     const rooms = await res.json();
